@@ -4,8 +4,8 @@ module Blazer
 
     initializer "blazer" do |app|
       # use a proc instead of a string
-      app.config.assets.precompile << proc { |path| path =~ /\Ablazer\/application\.(js|css)\z/ }
-      app.config.assets.precompile << proc { |path| path =~ /\Ablazer\/.+\.(eot|svg|ttf|woff)\z/ }
+      app.config.assets.precompile << ["blazer/application.js", "blazer/application.css"]
+      app.config.assets.precompile << ["blazer/*.eot", "blazer/*.svg", "blazer/*.ttf", "blazer/*.woff"]
 
       Blazer.time_zone ||= Blazer.settings["time_zone"] || Time.zone
       Blazer.audit = Blazer.settings.key?("audit") ? Blazer.settings["audit"] : true
